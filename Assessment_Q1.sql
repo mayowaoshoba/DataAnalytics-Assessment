@@ -7,7 +7,7 @@ select
     concat(a.first_name, ' ', a.last_name) as name,
     count(distinct b.id) as savings_count,
     count(distinct c.id) as investment_count,
-    (sum(b.confirmed_amount) + sum(c.amount))/100 as total_deposits
+    sum(b.confirmed_amount)/100 as total_deposits
 from
     users_customuser a
 join savings_savingsaccount b on b.owner_id = a.id and b.confirmed_amount > 0
