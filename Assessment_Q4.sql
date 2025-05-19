@@ -18,7 +18,7 @@ with transaction_tbl as (
 tenure as (
     select
         t.customer_id,
-        concat(u.first_name, ' ', u.last_name) as name,
+        concat(u.first_name, ' ', u.last_name) as name, -- to get full name, first_name and last_name was concatenated
         timestampdiff(month, u.date_joined, curdate()) as tenure_months,
         t.total_transactions,
         t.total_value,
@@ -28,6 +28,7 @@ tenure as (
         transaction_tbl t
     join users_customuser u on u.id = t.customer_id
 ),
+-- the estimated_clv is calulated from the above table using the formula provided and sorted by estimated_clv below
 clv as (
     select
         customer_id,
