@@ -2,18 +2,19 @@
 
 use adashi_staging;
 
---a cte table was created to optimise the script and get the total transaction of the customers and first transaction carried on the account
+-- a cte table was created to optimise the script and get the total transaction of the customers and first transaction carried on the account
 with transaction_tbl as (
     select
         owner_id as customer_id,
         count(*) as total_transactions,
-        sum(confirmed_amount)/100 as total_value, 
+        sum(confirmed_amount)/100 as total_value, -- converting from kobo to naira
         min(transaction_date) as first_transaction
     from
         savings_savingsaccount
     group by
         owner_id
 ),
+-- from the above table the tenure months of the customer is calculated as well as profit made on the transaction and also the average pofit per transaction
 tenure as (
     select
         t.customer_id,
