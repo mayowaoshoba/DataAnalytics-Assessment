@@ -2,7 +2,7 @@
 
 use adashi_staging;
 
---a cte table was created to optimise the script and get the last transaction carried out on the savings account by users
+-- a cte table was created to optimise the script and get the last transaction carried out on the savings account by users
 with last_savings_txn as (
     select
         id as plan_id,
@@ -16,7 +16,7 @@ with last_savings_txn as (
     group by
         id, owner_id
 ),
---a cte table was created to optimise the script and get the last transaction carried out on the investment account by users
+-- a cte table was created to optimise the script and get the last transaction carried out on the investment account by users
 last_investment_txn as (
     select
         id as plan_id,
