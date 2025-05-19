@@ -2,6 +2,7 @@
 
 use adashi_staging;
 
+--a cte table was created to optimise the script and get the months active of users
 with transaction_count as (
     select
         owner_id,
@@ -12,7 +13,8 @@ with transaction_count as (
     group by
         owner_id
 ),
- monthly_avg as (
+--from the cte created above the average transaction per month was calculated then categorized below
+ monthly_avg as ( 
     select
         owner_id,
         total_transactions,
